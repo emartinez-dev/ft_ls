@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include "libft.h"
 
 int main(void)
 {
-	printf("Hello world\n");
+	ft_printf("Hello world\n");
 	return (0);
 }
