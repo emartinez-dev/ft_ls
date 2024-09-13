@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/13 19:26:22 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/13 20:54:43 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 SRC_DIR = src/
-SRCS = main.c
+SRCS =	parser.c\
+		main.c
 
 SRC = ${addprefix ${SRC_DIR}, ${SRCS}}
 OBJ = ${SRC:.c=.o}
@@ -25,7 +26,7 @@ OBJ = ${SRC:.c=.o}
 LIBFT = libs/libft/libft.a
 LIBFT_DIR = libs/libft
 
-INCLUDES = -I ./inc -I ${LIBFT_DIR}/include
+INCLUDES = -I ./include -I ${LIBFT_DIR}/include
 
 ${NAME}: ${OBJ}
 	@echo "Compiling $(NAME)..."
