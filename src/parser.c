@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:31:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 11:40:09 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:00:16 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void error_invalid_arg(char arg);
 
+/*	Very basic arg parser. It looks for a given set of flags, and raises an error if any unknown
+	flag is introduced. */
 t_list    *parse_args(char *arg, t_config *conf)
 {
 	if (arg[0] != '-')

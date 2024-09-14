@@ -6,12 +6,13 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:31:30 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 11:39:24 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:59:29 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+/*	Auxiliary function meant to debug the arg parser */
 void    print_config(t_config *conf)
 {
 	char *str = ft_strdup("------\n");
@@ -29,6 +30,7 @@ void    print_config(t_config *conf)
 	free(str);
 }
 
+/*	Auxiliary function meant to debug the paths parser */
 void    print_paths(t_list *paths)
 {
 	while (paths)
@@ -36,4 +38,12 @@ void    print_paths(t_list *paths)
 		ft_printf("\t%s\n", paths->content);
 		paths = paths->next;
 	}
+}
+
+/* 	This function does nothing, meant to get passed to lstclear when list
+	contents were not allocated */
+void	do_nothing(void *ptr)
+{
+	(void) ptr;
+	return ;
 }
