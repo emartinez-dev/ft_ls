@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/13 20:54:43 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/14 11:38:25 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 SRC_DIR = src/
-SRCS =	parser.c\
+SRCS =	utils.c\
+		parser.c\
 		main.c
 
 SRC = ${addprefix ${SRC_DIR}, ${SRCS}}
