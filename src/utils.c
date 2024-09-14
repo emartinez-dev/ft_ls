@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:31:30 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 13:59:29 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:40:38 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,13 @@ void	do_nothing(void *ptr)
 {
 	(void) ptr;
 	return ;
+}
+
+/* This function joins two paths with a slash */
+char	*join_paths(char *p1, char *p2)
+{
+	char *tmp = ft_strjoin(p1, "/");
+	char *path = ft_strjoin(tmp, p2);
+	free(tmp);
+	return (path);
 }

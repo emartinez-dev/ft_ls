@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:32:58 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 18:34:26 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/14 21:16:00 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		to add another node from head, will be fine for low arg count
 		*/
 		if (new_path)
-			ft_lstadd_back(&paths, new_path);
+			ft_lstadd_front(&paths, new_path);
 	}
 
 	// Parsed all arguments, if paths is null (no file or folder specified), we should list CWD

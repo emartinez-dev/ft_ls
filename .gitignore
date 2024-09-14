@@ -1,6 +1,9 @@
 # Compiled program
 ft_ls
 
+# vscode folder
+.vscode/
+
 # Prerequisites
 *.d
 

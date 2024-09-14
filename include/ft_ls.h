@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 18:48:16 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:40:51 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <dirent.h>
 # include <errno.h>
+# include <linux/limits.h>
 # include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -45,5 +46,6 @@ t_list	*parse_args(char *arg, t_config *conf);
 void	print_config(t_config *conf);
 void    print_paths(t_list *paths);
 void	do_nothing(void *ptr);
+char	*join_paths(char *p1, char *p2);
 
 #endif
