@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/14 11:38:25 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/14 18:46:48 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM = rm -rf
 
 SRC_DIR = src/
 SRCS =	utils.c\
+		filesystem_handler.c\
 		parser.c\
 		main.c
 

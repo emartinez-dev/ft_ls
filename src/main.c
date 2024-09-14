@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:32:58 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 14:06:28 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:34:26 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ int main(int argc, char **argv)
 	if (!paths)
 		paths = ft_lstnew(cwd);
 
+	/*
 	ft_printf("Parsed configuration:\n");
 	print_config(&conf);
 	ft_printf("\nParsed paths:\n");
 	print_paths(paths);
+	*/
 
+	list_paths(paths, &conf);
 	/* Free everything */
 	ft_lstclear(&paths, do_nothing);
 	free(cwd);
