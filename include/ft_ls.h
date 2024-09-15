@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 20:40:51 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:27:52 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_args
 }   t_config;
 
 /* filesystem_handler.c */
-void	list_paths(t_list *paths, t_config *config);
+void	list_initial_paths(t_list *paths, t_config *config);
+void	list_dir(t_config *config, char *path);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);

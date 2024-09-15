@@ -6,28 +6,21 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 21:26:41 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:27:52 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	handle_files(struct stat *sb, t_config *config, char *name)
+static void print_wrapper(void *str)
 {
-	(void) sb;
-	(void) config;
-	ft_printf("\tfile: %s\n", name);
-};
-
-void	handle_links(struct stat *sb, t_config *config, char *name)
-{
-	(void) sb;
-	(void) config;
-	ft_printf("\tlink: %s\n", name);
-};
+	ft_putendl_fd((char *) str, STDOUT_FILENO);
+}
 
 void	list_dir(t_config *config, char *path)
 {
+	t_list			*paths = NULL;
+	t_list			*new_path;
 	struct dirent	*entry;
 	DIR				*dir;
 
@@ -38,31 +31,28 @@ void	list_dir(t_config *config, char *path)
 	}
 	while ((entry = readdir(dir)))
 	{
-		char *entry_path = join_paths(path, entry->d_name);
-
-		if (entry->d_name[0] == '.' && !config->a_hidden) {}
-		else if (entry->d_type == DT_DIR)
+		if (entry->d_name[0] != '.' || config->a_hidden)
 		{
-			if (config->R_recursive && ft_strncmp(entry->d_name, "..", 3)
-									&& ft_strncmp(entry->d_name, ".", 2))
-				list_dir(config, entry_path);
-			ft_printf("%s\n", entry_path);
+			char *entry_path = join_paths(path, entry->d_name);
+			new_path = ft_lstnew(entry_path);
+			ft_lstadd_back(&paths, new_path);
 		}
-		else if (entry->d_type == DT_REG)
-			ft_printf("%s\n", entry_path);
-		else if (entry->d_type == DT_LNK)
-			ft_printf("%s\n", entry_path); // dont cause loops while recursing links
-		else if (entry->d_type == DT_UNKNOWN)
-			ft_printf("ft_ls: cannot access '%s': %s\n", entry_path, strerror(errno));
-		free(entry_path);
 	}
 	closedir(dir);
+	// 1. Sort the list of entries
+	// 2. Print the entries with the config
+	ft_lstiter(paths, print_wrapper);
+	// 3. After printing, if any entry is a dir and recursive is on, list_dir on that folder
+	// 4. Clear the allocated joint paths
+	ft_lstclear(&paths, free);
 };
 
-void	list_paths(t_list *paths, t_config *config)
+void	list_initial_paths(t_list *paths, t_config *config)
 {
 	struct stat sb = {0};
 
+	if (config->r_reverse)
+		paths = ft_lstreverse(paths);
 	while (paths)
 	{
 		if (stat(paths->content, &sb))
@@ -70,12 +60,11 @@ void	list_paths(t_list *paths, t_config *config)
 						strerror(errno));
 		else
 		{
-			if (S_ISREG(sb.st_mode))
-				handle_files(&sb, config, paths->content);
-			else if (S_ISLNK(sb.st_mode))
-				handle_links(&sb, config, paths->content);
-			else if (S_ISDIR(sb.st_mode))
+			if (S_ISDIR(sb.st_mode))
 				list_dir(config, paths->content);
+			else if (S_ISLNK(sb.st_mode)) {} // what should I do with links
+			else
+				ft_printf("%s\n", paths->content); // this will be display_info
 		}
 		paths = paths->next;
 	}
