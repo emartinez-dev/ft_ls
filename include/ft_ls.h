@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/15 14:27:52 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:18:20 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	list_dir(t_config *config, char *path);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);
+
+/* sort.c */
+void	sort_list_inplace(t_list *head);
+char	**merge_sort(char **str_arr, size_t size);
 
 /* utils.c */
 void	print_config(t_config *conf);

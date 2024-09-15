@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/14 18:46:48 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/15 16:17:45 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_DIR = src/
 SRCS =	utils.c\
 		filesystem_handler.c\
 		parser.c\
+		sort.c\
 		main.c
 
 SRC = ${addprefix ${SRC_DIR}, ${SRCS}}

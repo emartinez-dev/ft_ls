@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/15 14:27:52 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:13:50 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,14 @@ void	list_dir(t_config *config, char *path)
 		}
 	}
 	closedir(dir);
-	// 1. Sort the list of entries
-	// 2. Print the entries with the config
+	if (!config->t_date_sort)
+		sort_list_inplace(paths);
+	// 1. Get all info needed if long output or sorted by date
+	// TODO: implement
+	// 2. Sort by date if needed, then reverse
+	if (config->r_reverse)
+		paths = ft_lstreverse(paths);
+	// 3. Print the info of this dir, stored in paths
 	ft_lstiter(paths, print_wrapper);
 	// 3. After printing, if any entry is a dir and recursive is on, list_dir on that folder
 	// 4. Clear the allocated joint paths
