@@ -6,20 +6,21 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/15 17:13:50 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:15:39 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void print_wrapper(void *str)
+static void fileinfo_wrapper(void *file)
 {
-	ft_putendl_fd((char *) str, STDOUT_FILENO);
+	print_files((t_file_info *) file);
 }
 
 void	list_dir(t_config *config, char *path)
 {
 	t_list			*paths = NULL;
+	t_list			*file_info = NULL;
 	t_list			*new_path;
 	struct dirent	*entry;
 	DIR				*dir;
@@ -39,18 +40,15 @@ void	list_dir(t_config *config, char *path)
 		}
 	}
 	closedir(dir);
-	if (!config->t_date_sort)
-		sort_list_inplace(paths);
-	// 1. Get all info needed if long output or sorted by date
-	// TODO: implement
-	// 2. Sort by date if needed, then reverse
+		sort_str_list_inplace(paths);
+	file_info = get_file_info(paths, config->l_long, config->t_date_sort); // TODO: no printing right know when no l or t flags
 	if (config->r_reverse)
-		paths = ft_lstreverse(paths);
-	// 3. Print the info of this dir, stored in paths
-	ft_lstiter(paths, print_wrapper);
+		file_info = ft_lstreverse(file_info); // FUCK, THIS LEAKS
+	ft_lstiter(file_info, fileinfo_wrapper);
 	// 3. After printing, if any entry is a dir and recursive is on, list_dir on that folder
 	// 4. Clear the allocated joint paths
 	ft_lstclear(&paths, free);
+	ft_lstclear(&file_info, free);
 };
 
 void	list_initial_paths(t_list *paths, t_config *config)

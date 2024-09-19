@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:31:30 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 20:40:38 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:12:09 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ void    print_paths(t_list *paths)
 		ft_printf("\t%s\n", paths->content);
 		paths = paths->next;
 	}
+}
+
+/*	Auxiliary function meant to debug the arg parser */
+void    print_files(t_file_info *info)
+{
+	char *t = ctime(&info->stat_info.st_mtime);
+	ft_printf("%s: %s\n", info->path, t);
 }
 
 /* 	This function does nothing, meant to get passed to lstclear when list
