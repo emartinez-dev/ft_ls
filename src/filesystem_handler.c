@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/19 23:15:39 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:21:50 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	list_dir(t_config *config, char *path)
 		}
 	}
 	closedir(dir);
+	if (!config->t_date_sort)
 		sort_str_list_inplace(paths);
 	file_info = get_file_info(paths, config->l_long, config->t_date_sort); // TODO: no printing right know when no l or t flags
 	if (config->r_reverse)

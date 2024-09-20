@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:24:23 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/19 23:02:58 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:23:36 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_list	*get_file_info(t_list *paths, bool long_output, bool sort_by_date)
 				if (lstat(paths->content, &info->stat_info)) {}
 					; // what do i do with this
 			}
-			ft_lstadd_back(&head, ft_lstnew(info));
 		}
+		ft_lstadd_back(&head, ft_lstnew(info));
 		paths = paths->next;
 	}
 	if (sort_by_date)
