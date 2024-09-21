@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:24:23 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 13:17:21 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:41:04 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,12 @@ t_list	*get_file_info(t_list *paths, t_config *conf)
 	return head;
 }
 
-void	recurse_files(t_list *file_info, t_config *conf)
+char	*get_file_name(char *str)
 {
-	t_file_info	*entry;
+	return ft_strrchr(str, '/') + 1;
+}
 
-	while (file_info)
-	{
-		entry = file_info->content;
-		if (S_ISDIR(entry->stat_info.st_mode))
-		{
-			ft_printf("\n%s:\n", entry->path);
-			list_dir(conf, entry->path);
-		}
-		file_info = file_info->next;
-	}
+void fileinfo_wrapper(void *file)
+{
+	print_files((t_file_info *) file);
 }

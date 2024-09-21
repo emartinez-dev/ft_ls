@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:31:30 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 13:16:41 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:42:41 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void    print_paths(t_list *paths)
 /*	Auxiliary function meant to debug the arg parser */
 void    print_files(t_file_info *info)
 {
-	ft_printf("%s\n", info->path);
+	char	*file;
+
+	file = get_file_name(info->path);
+	ft_printf("%s\n", file);
 }
 
 /* 	This function does nothing, meant to get passed to lstclear when list
