@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 16:46:28 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:38:01 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	list_dir(t_config *conf, char *path)
 void	list_initial_paths(t_list *paths, t_config *config)
 {
 	struct stat sb = {0};
+	t_file_info	file = {0};
 
 	if (config->r_reverse)
 		paths = ft_lstreverse(paths);
@@ -63,6 +64,9 @@ void	list_initial_paths(t_list *paths, t_config *config)
 						ft_printf("ft_ls: cannot access link '%s': %s\n",
 								  paths->content, strerror(errno));
 				}
+				file.path = paths->content;
+				file.stat_info = sb;
+				print_file_info(&file, config);
 			}
 		}
 		paths = paths->next;

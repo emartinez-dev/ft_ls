@@ -6,12 +6,14 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 16:57:50 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:38:04 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
+
+# define S_ISEXC(mode)  ((mode) & (S_IXUSR | S_IXGRP | S_IXOTH))
 
 # include "libft.h"
 
@@ -55,6 +57,7 @@ char	*join_paths(char *p1, char *p2);
 
 /* output.c */
 void    print_files_info(t_list *files, t_config *conf);
+void    print_file_info(t_file_info *file, t_config *conf);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);
