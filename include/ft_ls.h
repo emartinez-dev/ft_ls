@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 15:39:35 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:57:50 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	recurse_files(t_list *file_info, t_config *conf);
 /* file_info.c */
 t_list	*get_file_info(t_list *paths, t_config *conf);
 char	*get_file_name(char *path);
-void 	fileinfo_wrapper(void *file);
+char	*join_paths(char *p1, char *p2);
+
+/* output.c */
+void    print_files_info(t_list *files, t_config *conf);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);
@@ -61,12 +64,5 @@ void		sort_paths_alphabetically(t_list *head);
 void		sort_paths_by_date(t_list *head);
 char		**msort_str(char **str_arr, size_t size);
 t_file_info	**msort_date(t_file_info **file_arr, size_t size);
-
-/* utils.c */
-void	print_config(t_config *conf);
-void    print_paths(t_list *paths);
-void    print_files(t_file_info *info);
-void	do_nothing(void *ptr);
-char	*join_paths(char *p1, char *p2);
 
 #endif

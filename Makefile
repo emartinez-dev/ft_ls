@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/19 23:10:42 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/21 16:58:13 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 SRC_DIR = src/
-SRCS =	utils.c\
-		filesystem_handler.c\
+SRCS =	filesystem_handler.c\
 		file_info.c\
+		output.c\
 		parser.c\
 		sort.c\
 		main.c

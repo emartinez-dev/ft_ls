@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:32:58 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/15 14:27:52 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:48:24 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
 	list_initial_paths(paths, &conf);
 	/* Free everything */
-	ft_lstclear(&paths, do_nothing);
+	ft_lstclear(&paths, ft_do_nothing);
 	free(cwd);
 	return (0);
 }

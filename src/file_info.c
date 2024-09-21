@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:24:23 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 15:41:04 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:57:46 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ char	*get_file_name(char *str)
 	return ft_strrchr(str, '/') + 1;
 }
 
-void fileinfo_wrapper(void *file)
+char	*join_paths(char *p1, char *p2)
 {
-	print_files((t_file_info *) file);
+	char *tmp = ft_strjoin(p1, "/");
+	char *path = ft_strjoin(tmp, p2);
+	free(tmp);
+	return (path);
 }

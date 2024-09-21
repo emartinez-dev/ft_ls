@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 15:41:21 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:46:28 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	list_dir(t_config *conf, char *path)
 {
 	t_list			*paths = NULL;
-	t_list			*file_info = NULL;
+	t_list			*files_info;
 	struct dirent	*entry;
 	DIR				*dir;
 
@@ -28,16 +28,16 @@ void	list_dir(t_config *conf, char *path)
 		if (entry->d_name[0] != '.' || conf->a_hidden)
 			ft_lstadd_back(&paths, ft_lstnew(join_paths(path, entry->d_name)));
 	closedir(dir);
-	file_info = get_file_info(paths, conf);
+	files_info = get_file_info(paths, conf);
 	if (conf->R_recursive)
 	{
 		ft_printf("%s:\n", path);
-		recurse_files(file_info, conf);
+		recurse_files(files_info, conf);
 	}
 	else
-		ft_lstiter(file_info, fileinfo_wrapper);
+		print_files_info(files_info, conf);
 	ft_lstclear(&paths, free);
-	ft_lstclear(&file_info, free);
+	ft_lstclear(&files_info, free);
 };
 
 void	list_initial_paths(t_list *paths, t_config *config)
@@ -74,7 +74,7 @@ void	recurse_files(t_list *file_info, t_config *conf)
 	t_file_info	*entry;
 	char		*file;
 
-	ft_lstiter(file_info, fileinfo_wrapper);
+	print_files_info(file_info, conf);
 	ft_printf("\n");
 	while (file_info)
 	{
