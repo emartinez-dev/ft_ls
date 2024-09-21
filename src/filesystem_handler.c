@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/20 20:21:50 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 13:12:24 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ static void fileinfo_wrapper(void *file)
 	print_files((t_file_info *) file);
 }
 
-void	list_dir(t_config *config, char *path)
+void	list_dir(t_config *conf, char *path)
 {
 	t_list			*paths = NULL;
 	t_list			*file_info = NULL;
-	t_list			*new_path;
 	struct dirent	*entry;
 	DIR				*dir;
 
@@ -31,23 +30,13 @@ void	list_dir(t_config *config, char *path)
 		return ;
 	}
 	while ((entry = readdir(dir)))
-	{
-		if (entry->d_name[0] != '.' || config->a_hidden)
-		{
-			char *entry_path = join_paths(path, entry->d_name);
-			new_path = ft_lstnew(entry_path);
-			ft_lstadd_back(&paths, new_path);
-		}
-	}
+		if (entry->d_name[0] != '.' || conf->a_hidden)
+			ft_lstadd_back(&paths, ft_lstnew(join_paths(path, entry->d_name)));
 	closedir(dir);
-	if (!config->t_date_sort)
-		sort_str_list_inplace(paths);
-	file_info = get_file_info(paths, config->l_long, config->t_date_sort); // TODO: no printing right know when no l or t flags
-	if (config->r_reverse)
-		file_info = ft_lstreverse(file_info); // FUCK, THIS LEAKS
+	file_info = get_file_info(paths, conf);
 	ft_lstiter(file_info, fileinfo_wrapper);
-	// 3. After printing, if any entry is a dir and recursive is on, list_dir on that folder
-	// 4. Clear the allocated joint paths
+	if (conf->R_recursive)
+		recurse_files(file_info, conf);
 	ft_lstclear(&paths, free);
 	ft_lstclear(&file_info, free);
 };

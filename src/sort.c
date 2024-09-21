@@ -6,13 +6,13 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 15:32:20 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/19 23:07:54 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 13:06:51 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	sort_str_list_inplace(t_list *head)
+void	sort_paths_alphabetically(t_list *head)
 {
 	size_t	lst_size = ft_lstsize(head);
 	char	**str_arr = ft_calloc(sizeof(t_list *), lst_size);
@@ -34,7 +34,7 @@ void	sort_str_list_inplace(t_list *head)
 	free(str_arr);
 }
 
-void	sort_date_list_inplace(t_list *head)
+void	sort_paths_by_date(t_list *head)
 {
 	size_t	lst_size = ft_lstsize(head);
 	t_file_info	**info = ft_calloc(sizeof(t_file_info *), lst_size);

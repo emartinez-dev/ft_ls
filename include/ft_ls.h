@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/19 23:01:44 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 13:12:32 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ typedef struct s_file_info
 /* filesystem_handler.c */
 void	list_initial_paths(t_list *paths, t_config *config);
 void	list_dir(t_config *config, char *path);
+void	recurse_files(t_list *file_info, t_config *conf);
 
 /* file_info.c */
-t_list	*get_file_info(t_list *paths, bool long_output, bool sort_by_date);
+t_list	*get_file_info(t_list *paths, t_config *conf);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);
 
 /* sort.c */
-void		sort_str_list_inplace(t_list *head);
-void		sort_date_list_inplace(t_list *head);
+void		sort_paths_alphabetically(t_list *head);
+void		sort_paths_by_date(t_list *head);
 char		**msort_str(char **str_arr, size_t size);
 t_file_info	**msort_date(t_file_info **file_arr, size_t size);
 
