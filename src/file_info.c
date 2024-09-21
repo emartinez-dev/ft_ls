@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:24:23 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 16:57:46 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:44:58 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,13 @@ t_list	*get_file_info(t_list *paths, t_config *conf)
 	{
 		info = ft_calloc(sizeof(t_file_info), 1);
 		info->path = paths->content;
-		if (conf->l_long || conf->R_recursive || conf->t_date_sort)
+		if (stat(paths->content, &info->stat_info)) {}
+			; // what do i do with this
+		if (S_ISLNK(info->stat_info.st_mode))
 		{
-			if (stat(paths->content, &info->stat_info)) {}
+			ft_bzero(&info->stat_info, sizeof(t_file_info));
+			if (lstat(paths->content, &info->stat_info)) {}
 				; // what do i do with this
-			if (S_ISLNK(info->stat_info.st_mode))
-			{
-				ft_bzero(&info->stat_info, sizeof(t_file_info));
-				if (lstat(paths->content, &info->stat_info)) {}
-					; // what do i do with this
-			}
 		}
 		ft_lstadd_back(&head, ft_lstnew(info));
 		paths = paths->next;
@@ -46,7 +43,12 @@ t_list	*get_file_info(t_list *paths, t_config *conf)
 
 char	*get_file_name(char *str)
 {
-	return ft_strrchr(str, '/') + 1;
+	char	*name;
+
+	name = ft_strrchr(str, '/');
+	if (name)
+		return (name + 1);
+	return (str);
 }
 
 char	*join_paths(char *p1, char *p2)
