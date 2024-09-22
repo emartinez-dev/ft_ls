@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 15:32:20 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 13:06:51 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 20:23:20 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_file_info	**msort_date_merge(t_file_info **left, size_t size_l,
 
 	while (i < size_l && j < size_r)
 	{
-		if (left[i]->stat_info.st_mtime >= right[j]->stat_info.st_mtime)
+		if (left[i]->stat_info.st_mtime <= right[j]->stat_info.st_mtime)
 			temp[k++] = left[i++];
 		else
 			temp[k++] = right[j++];

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:24:23 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 13:49:08 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 20:22:37 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ t_list	*get_file_info(t_list *paths, t_config *conf)
 	{
 		info = ft_calloc(sizeof(t_file_info), 1);
 		info->path = paths->content;
-		if (lstat(paths->content, &info->stat_info)) {}
-			; // what do i do with this
-		ft_lstadd_back(&head, ft_lstnew(info));
+		if (!lstat(paths->content, &info->stat_info))
+			ft_lstadd_front(&head, ft_lstnew(info));
 		paths = paths->next;
 	}
 	if (conf->t_date_sort)
 		sort_paths_by_date(head);
-	if (conf->r_reverse)
+	if (!conf->r_reverse)
 		head = ft_lstreverse(head);
 	return head;
 }
