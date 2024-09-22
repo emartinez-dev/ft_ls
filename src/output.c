@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 16:41:03 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 15:41:31 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:25:29 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void    print_files_info(t_list *files, t_config *conf)
 
 	if (conf->l_long)
 		print_files_blocks(files);
+	get_widths(files, conf);
 	while (files)
 	{
 		file = files->content;
@@ -37,7 +38,7 @@ void	print_file_info(t_file_info	*file, t_config	*conf)
 	sep = SEP;
 	if (conf->l_long)
 	{
-		print_long_output(file);
+		print_long_output(file, conf);
 		sep = LONG_SEP;
 	}
 	if (S_ISDIR(file->stat_info.st_mode))
@@ -56,7 +57,7 @@ void	print_file_info(t_file_info	*file, t_config	*conf)
 		ft_printf("%s%s", filename, sep);
 }
 
-void	print_long_output(t_file_info *file)
+void	print_long_output(t_file_info *file, t_config *conf)
 {
 	struct passwd	*pw;
 	struct group	*grp;
@@ -66,7 +67,7 @@ void	print_long_output(t_file_info *file)
 	pw = getpwuid(sb->st_uid);
 	grp = getgrgid(sb->st_gid);
 	print_permissions(file);
-	ft_printf(" %u ", sb->st_nlink);
+	print_number_with_padding(sb->st_nlink, conf->links_width);
 	if (pw->pw_name)
 		ft_printf("%s ", pw->pw_name);
 	else
@@ -75,6 +76,6 @@ void	print_long_output(t_file_info *file)
 		ft_printf("%s ", grp->gr_name);
 	else
 		ft_printf("%u ", grp->gr_gid);
-	ft_printf("%u ", sb->st_size);
+	print_number_with_padding(sb->st_size, conf->size_width);
 	print_date(file);
 }

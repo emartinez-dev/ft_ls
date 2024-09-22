@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:38:16 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 15:50:10 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:24:19 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	print_permissions(t_file_info *file)
 	ft_putchar((sb.st_mode & S_IROTH) ? 'r' : '-');
 	ft_putchar((sb.st_mode & S_IWOTH) ? 'w' : '-');
 	ft_putchar((sb.st_mode & S_IXOTH) ? 'x' : '-');
+	ft_putchar(' ');
 }
 
 void	print_date(t_file_info *file)
@@ -61,7 +62,7 @@ void	print_date(t_file_info *file)
 		free(date);
 	}
 	else
-		ft_printf("%s ", file_year);
+		ft_printf(" %s ", file_year);
 	free(current_year);
 	free(file_year);
 }
@@ -90,4 +91,55 @@ void    print_link_long(t_file_info *file, char *filename)
 	readlink(file->path, lnk_file, 256);
 	ft_printf("%s%s%s -> %s\n", LNK_COLOR, filename, RESET, lnk_file);
 	free(lnk_file);
+}
+
+int     number_width(unsigned int n)
+{
+	int width = 0;
+
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		width++;
+		n = n / 10;
+	}
+	return (width);
+}
+
+void    print_number_with_padding(unsigned int n, int width)
+{
+	int	n_width = number_width(n);
+
+	while (n_width <= width)
+	{
+		ft_putchar(' ');
+		n_width++;
+	}
+	ft_printf("%u ", n);
+}
+
+void	get_widths(t_list *files, t_config *conf)
+{
+	t_file_info	*file;
+	unsigned int max_nlink = 0;
+	unsigned int max_size = 0;
+	int link_width;
+	int size_width;
+
+	while (files)
+	{
+		file = files->content;
+		if (file->stat_info.st_size > max_size)
+			max_size = file->stat_info.st_size;
+		if (file->stat_info.st_nlink > max_nlink)
+			max_nlink = file->stat_info.st_nlink;
+		files = files->next;
+	}
+	size_width = number_width(max_size);
+	link_width = number_width(max_nlink);
+	if (size_width > conf->size_width)
+		conf->size_width = size_width;
+	if (link_width > conf->links_width)
+		conf->links_width = link_width;
 }

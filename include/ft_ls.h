@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 15:42:09 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:25:12 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_args
 	bool a_hidden;
 	bool r_reverse;
 	bool t_date_sort;
+	int	links_width;
+	int size_width;
 }   t_config;
 
 typedef struct s_file_info
@@ -61,13 +63,15 @@ char	*join_paths(char *p1, char *p2);
 /* output.c */
 void    print_files_info(t_list *files, t_config *conf);
 void    print_file_info(t_file_info *file, t_config *conf);
-void	print_long_output(t_file_info *file);
+void	print_long_output(t_file_info *file, t_config *conf);
 
 /* output_helpers.c */
 void	print_permissions(t_file_info *file);
 void	print_date(t_file_info *file);
 void	print_files_blocks(t_list *files);
 void    print_link_long(t_file_info *file, char *filename);
+void    print_number_with_padding(unsigned int n, int width);
+void	get_widths(t_list *files, t_config *conf);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);

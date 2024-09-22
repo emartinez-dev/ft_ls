@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:32:58 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 12:26:43 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:53:31 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	(void)		argc;
 	t_config	conf = {0};
-	t_list		*paths;
+	t_list		*paths = NULL;
 	t_list		*new_path;
 
 	int i = 0;
