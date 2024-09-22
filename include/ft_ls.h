@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 14:46:40 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 15:42:09 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <time.h>
+# include <unistd.h>
 
 /* I am an outer core student, could I pls just use stdbool? */
 typedef enum { false, true } bool;
@@ -60,9 +61,13 @@ char	*join_paths(char *p1, char *p2);
 /* output.c */
 void    print_files_info(t_list *files, t_config *conf);
 void    print_file_info(t_file_info *file, t_config *conf);
-void	print_files_blocks(t_list *files);
 void	print_long_output(t_file_info *file);
+
+/* output_helpers.c */
 void	print_permissions(t_file_info *file);
+void	print_date(t_file_info *file);
+void	print_files_blocks(t_list *files);
+void    print_link_long(t_file_info *file, char *filename);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);

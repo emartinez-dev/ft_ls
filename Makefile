@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/21 16:58:13 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/22 15:50:20 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_DIR = src/
 SRCS =	filesystem_handler.c\
 		file_info.c\
 		output.c\
+		output_helpers.c\
 		parser.c\
 		sort.c\
 		main.c
