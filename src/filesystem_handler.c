@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 19:21:07 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 20:13:04 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	list_dir(t_config *conf, char *path)
 	}
 	while ((entry = readdir(dir)))
 		if (entry->d_name[0] != '.' || conf->a_hidden)
-			ft_lstadd_back(&paths, ft_lstnew(join_paths(path, entry->d_name)));
+			ft_lstadd_front(&paths, ft_lstnew(join_paths(path, entry->d_name)));
+	paths = ft_lstreverse(paths);
 	closedir(dir);
 	files_info = get_file_info(paths, conf);
 	if (conf->R_recursive)
@@ -85,8 +86,8 @@ void	recurse_files(t_list *file_info, t_config *conf)
 	{
 		entry = file_info->content;
 		file = get_file_name(entry->path);
-		if (S_ISDIR(entry->stat_info.st_mode) && ft_strncmp(file, "..", 3)
-											&& ft_strncmp(file, ".", 2))
+		if (S_ISDIR(entry->stat_info.st_mode) && entry->stat_info.st_size != 0 &&
+		 	ft_strncmp(file, "..", 3) && ft_strncmp(file, ".", 2))
 			list_dir(conf, entry->path);
 		file_info = file_info->next;
 	}
