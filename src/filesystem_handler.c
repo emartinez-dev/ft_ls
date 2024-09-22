@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 13:49:46 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:47:48 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	list_initial_paths(t_list *paths, t_config *config)
 				file.path = paths->content;
 				file.stat_info = sb;
 				print_file_info(&file, config);
+				ft_printf("\n");
 			}
 		}
 		paths = paths->next;
@@ -80,7 +81,6 @@ void	recurse_files(t_list *file_info, t_config *conf)
 	char		*file;
 
 	print_files_info(file_info, conf);
-	ft_printf("\n");
 	while (file_info)
 	{
 		entry = file_info->content;

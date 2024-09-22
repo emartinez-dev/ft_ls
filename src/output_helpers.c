@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:38:16 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 18:24:19 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:51:01 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void    print_number_with_padding(unsigned int n, int width)
 {
 	int	n_width = number_width(n);
 
-	while (n_width <= width)
+	while (n_width < width)
 	{
 		ft_putchar(' ');
 		n_width++;
@@ -124,8 +124,6 @@ void	get_widths(t_list *files, t_config *conf)
 	t_file_info	*file;
 	unsigned int max_nlink = 0;
 	unsigned int max_size = 0;
-	int link_width;
-	int size_width;
 
 	while (files)
 	{
@@ -136,10 +134,6 @@ void	get_widths(t_list *files, t_config *conf)
 			max_nlink = file->stat_info.st_nlink;
 		files = files->next;
 	}
-	size_width = number_width(max_size);
-	link_width = number_width(max_nlink);
-	if (size_width > conf->size_width)
-		conf->size_width = size_width;
-	if (link_width > conf->links_width)
-		conf->links_width = link_width;
+	conf->size_width = number_width(max_size);
+	conf->links_width = number_width(max_nlink);
 }
