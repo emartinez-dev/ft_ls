@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 18:47:48 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 19:21:07 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	list_initial_paths(t_list *paths, t_config *config)
 		{
 			if (S_ISDIR(sb.st_mode))
 			{
-				if (initial_paths > 1)
+				if (initial_paths > 1 && !config->R_recursive)
 					ft_printf("%s:\n", paths->content);
 				list_dir(config, paths->content);
 				if (paths->next)
