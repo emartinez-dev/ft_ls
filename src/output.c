@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 16:41:03 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 18:25:29 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 20:05:17 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	print_file_info(t_file_info	*file, t_config	*conf)
 			print_link_long(file, filename);
 		else
 			ft_printf("%s%s%s%s", LNK_COLOR, filename, RESET, sep);
-
 	}
 	else if (S_ISEXC(file->stat_info.st_mode))
 		ft_printf("%s%s%s%s", EXC_COLOR, filename, RESET, sep);
@@ -68,11 +67,15 @@ void	print_long_output(t_file_info *file, t_config *conf)
 	grp = getgrgid(sb->st_gid);
 	print_permissions(file);
 	print_number_with_padding(sb->st_nlink, conf->links_width);
-	if (pw->pw_name)
+	if (!pw)
+		ft_printf("%u ", sb->st_uid);
+	else if (pw->pw_name)
 		ft_printf("%s ", pw->pw_name);
 	else
 		ft_printf("%u ", pw->pw_gid);
-	if (grp->gr_name)
+	if (!grp)
+		ft_printf("%u ", sb->st_gid);
+	else if (grp->gr_name)
 		ft_printf("%s ", grp->gr_name);
 	else
 		ft_printf("%u ", grp->gr_gid);
