@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 17:38:01 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:49:46 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,27 @@ void	list_initial_paths(t_list *paths, t_config *config)
 {
 	struct stat sb = {0};
 	t_file_info	file = {0};
+	size_t		initial_paths = ft_lstsize(paths);
 
 	if (config->r_reverse)
 		paths = ft_lstreverse(paths);
 	while (paths)
 	{
-		if (stat(paths->content, &sb))
+		if (lstat(paths->content, &sb))
 			ft_printf("ft_ls: cannot access '%s': %s\n", paths->content,
 					  strerror(errno));
 		else
 		{
 			if (S_ISDIR(sb.st_mode))
+			{
+				if (initial_paths > 1)
+					ft_printf("%s:\n", paths->content);
 				list_dir(config, paths->content);
+				if (paths->next)
+					ft_printf("\n");
+			}
 			else
 			{
-				if (S_ISLNK(sb.st_mode))
-				{
-					if (lstat(paths->content, &sb))
-						ft_printf("ft_ls: cannot access link '%s': %s\n",
-								  paths->content, strerror(errno));
-				}
 				file.path = paths->content;
 				file.stat_info = sb;
 				print_file_info(&file, config);

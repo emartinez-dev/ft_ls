@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 17:38:04 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:42:56 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ char	*join_paths(char *p1, char *p2);
 /* output.c */
 void    print_files_info(t_list *files, t_config *conf);
 void    print_file_info(t_file_info *file, t_config *conf);
+void	print_files_blocks(t_list *files);
+void	print_long_output(t_file_info *file);
+void	print_permissions(t_file_info *file);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);

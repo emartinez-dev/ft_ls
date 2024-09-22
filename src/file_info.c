@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:24:23 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 17:44:58 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:49:08 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,8 @@ t_list	*get_file_info(t_list *paths, t_config *conf)
 	{
 		info = ft_calloc(sizeof(t_file_info), 1);
 		info->path = paths->content;
-		if (stat(paths->content, &info->stat_info)) {}
+		if (lstat(paths->content, &info->stat_info)) {}
 			; // what do i do with this
-		if (S_ISLNK(info->stat_info.st_mode))
-		{
-			ft_bzero(&info->stat_info, sizeof(t_file_info));
-			if (lstat(paths->content, &info->stat_info)) {}
-				; // what do i do with this
-		}
 		ft_lstadd_back(&head, ft_lstnew(info));
 		paths = paths->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:32:58 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/21 16:48:24 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:26:43 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,13 @@ int main(int argc, char **argv)
 	while (argv[++i])
 	{
 		new_path = parse_args(argv[i], &conf);
-		/*
-		This could be optimized as ft_lstadd_back always travels the list
-		to add another node from head, will be fine for low arg count
-		*/
 		if (new_path)
 			ft_lstadd_front(&paths, new_path);
 	}
-
-	// Parsed all arguments, if paths is null (no file or folder specified), we should list CWD
 	char	*cwd = ft_strdup(".");
 	if (!paths)
 		paths = ft_lstnew(cwd);
-
-	/*
-	ft_printf("Parsed configuration:\n");
-	print_config(&conf);
-	ft_printf("\nParsed paths:\n");
-	print_paths(paths);
-	*/
-
 	list_initial_paths(paths, &conf);
-	/* Free everything */
 	ft_lstclear(&paths, ft_do_nothing);
 	free(cwd);
 	return (0);
