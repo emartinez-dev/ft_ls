@@ -68,8 +68,24 @@ void	print_files_blocks(t_list *files)
 
 void	print_long_output(t_file_info *file)
 {
+	struct passwd	*pw;
+	struct group	*grp;
+	struct stat		*sb;
+
+	sb = &file->stat_info;
+	pw = getpwuid(sb->st_uid);
+	grp = getgrgid(sb->st_gid);
 	print_permissions(file);
-	ft_printf(" %n ", file->stat_info.st_nlink);
+	ft_printf(" %u ", sb->st_nlink);
+	if (pw->pw_name)
+		ft_printf("%s ", pw->pw_name);
+	else
+		ft_printf("%u ", pw->pw_gid);
+	if (grp->gr_name)
+		ft_printf("%s ", grp->gr_name);
+	else
+		ft_printf("%u ", grp->gr_gid);
+	ft_printf("%u ", sb->st_size);
 }
 
 void	print_permissions(t_file_info *file)

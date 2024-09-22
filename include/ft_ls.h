@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 13:42:56 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/22 14:46:40 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <dirent.h>
 # include <errno.h>
 # include <linux/limits.h>
+# include <grp.h>
+# include <pwd.h>
 # include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
