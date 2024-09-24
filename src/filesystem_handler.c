@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 20:13:04 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:53:47 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	recurse_files(t_list *file_info, t_config *conf)
 	char		*file;
 
 	print_files_info(file_info, conf);
+	ft_printf("\n");
 	while (file_info)
 	{
 		entry = file_info->content;
