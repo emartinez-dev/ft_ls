@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:38:16 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 18:51:01 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:17:09 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void    print_link_long(t_file_info *file, char *filename)
 	free(lnk_file);
 }
 
-int     number_width(unsigned int n)
+int     number_width(unsigned long long n)
 {
 	int width = 0;
 
@@ -107,7 +107,7 @@ int     number_width(unsigned int n)
 	return (width);
 }
 
-void    print_number_with_padding(unsigned int n, int width)
+void    print_number_with_padding(unsigned long long n, int width)
 {
 	int	n_width = number_width(n);
 
@@ -116,14 +116,14 @@ void    print_number_with_padding(unsigned int n, int width)
 		ft_putchar(' ');
 		n_width++;
 	}
-	ft_printf("%u ", n);
+	ft_printf("%l ", n);
 }
 
 void	get_widths(t_list *files, t_config *conf)
 {
 	t_file_info	*file;
-	unsigned int max_nlink = 0;
-	unsigned int max_size = 0;
+	nlink_t		max_nlink = 0;
+	off_t		max_size = 0;
 
 	while (files)
 	{

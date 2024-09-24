@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 18:25:12 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:16:13 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	print_permissions(t_file_info *file);
 void	print_date(t_file_info *file);
 void	print_files_blocks(t_list *files);
 void    print_link_long(t_file_info *file, char *filename);
-void    print_number_with_padding(unsigned int n, int width);
+void    print_number_with_padding(unsigned long long n, int width);
 void	get_widths(t_list *files, t_config *conf);
 
 /* parser.c */
