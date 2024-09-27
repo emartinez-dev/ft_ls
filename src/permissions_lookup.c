@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:43:39 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/27 20:08:21 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:46:08 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char    *get_group_name(gid_t group_id, t_config *conf)
 	info = ft_calloc(1, sizeof(t_group_info));
 	info->gid = group_id;
 	grp = getgrgid(group_id);
-	if (grp->gr_name)
+	if (grp && grp->gr_name)
 		info->name = ft_strdup(grp->gr_name);
 	else
 		info->name = ft_itoa(group_id);
@@ -54,7 +54,7 @@ char    *get_user_name(uid_t user_id, t_config *conf)
 	info = ft_calloc(1, sizeof(t_user_info));
 	info->uid = user_id;
 	pw = getpwuid(user_id);
-	if (pw->pw_name)
+	if (pw && pw->pw_name)
 		info->name = ft_strdup(pw->pw_name);
 	else
 		info->name = ft_itoa(user_id);
