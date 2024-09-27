@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:32:58 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/22 17:53:31 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:27:38 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int main(int argc, char **argv)
 	}
 	char	*cwd = ft_strdup(".");
 	if (!paths)
-		paths = ft_lstnew(cwd);
-	list_initial_paths(paths, &conf);
-	ft_lstclear(&paths, ft_do_nothing);
-	free(cwd);
+	ft_printf_flush_buffer();
+	ft_lstclear(&conf.users, free_user_info);
+	ft_lstclear(&conf.groups, free_group_info);
 	return (0);
 }

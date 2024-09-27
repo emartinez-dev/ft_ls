@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:40:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/24 13:16:13 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:27:48 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_args
 	bool t_date_sort;
 	int	links_width;
 	int size_width;
+	t_list *groups;
+	t_list *users;
 }   t_config;
 
 typedef struct s_file_info
@@ -49,6 +51,18 @@ typedef struct s_file_info
 	char		*path;
 	struct stat	stat_info;
 }	t_file_info;
+
+typedef struct s_group_info
+{
+	gid_t	gid;
+	char	*name;
+}	t_group_info;
+
+typedef struct s_user_info
+{
+	uid_t	uid;
+	char	*name;
+}	t_user_info;
 
 /* filesystem_handler.c */
 void	list_initial_paths(t_list *paths, t_config *config);
@@ -75,6 +89,12 @@ void	get_widths(t_list *files, t_config *conf);
 
 /* parser.c */
 t_list	*parse_args(char *arg, t_config *conf);
+
+/* permissions_lookup.c */
+char    *get_group_name(gid_t group_id, t_config *conf);
+char    *get_user_name(uid_t user_id, t_config *conf);
+void	free_user_info(void *info);
+void	free_group_info(void *info);
 
 /* sort.c */
 void		sort_paths_alphabetically(t_list *head);

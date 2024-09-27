@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:38:16 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/24 13:17:09 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:16:08 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,22 @@
 void	print_permissions(t_file_info *file)
 {
 	struct	stat sb = file->stat_info;
+	char	str[] = "----------";
 
 	if (S_ISDIR(sb.st_mode))
-		ft_putchar('d');
+		str[0] = 'd';
 	else if (S_ISLNK(sb.st_mode))
-		ft_putchar('l');
-	else
-		ft_putchar('-');
-	ft_putchar((sb.st_mode & S_IRUSR) ? 'r' : '-');
-	ft_putchar((sb.st_mode & S_IWUSR) ? 'w' : '-');
-	ft_putchar((sb.st_mode & S_IXUSR) ? 'x' : '-');
-	ft_putchar((sb.st_mode & S_IRGRP) ? 'r' : '-');
-	ft_putchar((sb.st_mode & S_IWGRP) ? 'w' : '-');
-	ft_putchar((sb.st_mode & S_IXGRP) ? 'x' : '-');
-	ft_putchar((sb.st_mode & S_IROTH) ? 'r' : '-');
-	ft_putchar((sb.st_mode & S_IWOTH) ? 'w' : '-');
-	ft_putchar((sb.st_mode & S_IXOTH) ? 'x' : '-');
-	ft_putchar(' ');
+		str[0] = 'l';
+	str[1] = (sb.st_mode & S_IRUSR) ? 'r' : '-';
+	str[2] = (sb.st_mode & S_IWUSR) ? 'w' : '-';
+	str[3] = (sb.st_mode & S_IXUSR) ? 'x' : '-';
+	str[4] = (sb.st_mode & S_IRGRP) ? 'r' : '-';
+	str[5] = (sb.st_mode & S_IWGRP) ? 'w' : '-';
+	str[6] = (sb.st_mode & S_IXGRP) ? 'x' : '-';
+	str[7] = (sb.st_mode & S_IROTH) ? 'r' : '-';
+	str[8] = (sb.st_mode & S_IWOTH) ? 'w' : '-';
+	str[9] = (sb.st_mode & S_IXOTH) ? 'x' : '-';
+	ft_printf("%s ", str);
 }
 
 void	print_date(t_file_info *file)
@@ -113,7 +112,7 @@ void    print_number_with_padding(unsigned long long n, int width)
 
 	while (n_width < width)
 	{
-		ft_putchar(' ');
+		ft_printf(" ");
 		n_width++;
 	}
 	ft_printf("%l ", n);

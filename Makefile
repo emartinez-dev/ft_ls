@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:15:27 by franmart          #+#    #+#              #
-#    Updated: 2024/09/22 15:50:20 by franmart         ###   ########.fr        #
+#    Updated: 2024/09/27 19:55:02 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	filesystem_handler.c\
 		output.c\
 		output_helpers.c\
 		parser.c\
+		permissions_lookup.c\
 		sort.c\
 		main.c
 
