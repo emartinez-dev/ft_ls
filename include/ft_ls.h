@@ -65,7 +65,7 @@ typedef struct s_user_info
 }	t_user_info;
 
 /* filesystem_handler.c */
-void	list_initial_paths(t_list *paths, t_config *config);
+t_list	*list_initial_paths(t_list *paths, t_config *config);
 void	list_dir(t_config *config, char *path);
 void	recurse_files(t_list *file_info, t_config *conf);
 

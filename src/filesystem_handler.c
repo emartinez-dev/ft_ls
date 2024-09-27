@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/24 12:53:47 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:33:54 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@ void	list_dir(t_config *conf, char *path)
 	ft_lstclear(&files_info, free);
 };
 
-void	list_initial_paths(t_list *paths, t_config *config)
+t_list	*list_initial_paths(t_list *paths, t_config *config)
 {
 	struct stat sb = {0};
 	t_file_info	file = {0};
 	size_t		initial_paths = ft_lstsize(paths);
+	t_list		*head;
 
 	if (config->r_reverse)
 		paths = ft_lstreverse(paths);
+	head = paths;
 	while (paths)
 	{
 		if (lstat(paths->content, &sb))
@@ -74,6 +76,7 @@ void	list_initial_paths(t_list *paths, t_config *config)
 		}
 		paths = paths->next;
 	}
+	return (head);
 }
 
 void	recurse_files(t_list *file_info, t_config *conf)

@@ -26,9 +26,11 @@ int main(int argc, char **argv)
 		if (new_path)
 			ft_lstadd_front(&paths, new_path);
 	}
-	char	*cwd = ft_strdup(".");
 	if (!paths)
+		paths = ft_lstnew(ft_strdup("."));
+	paths = list_initial_paths(paths, &conf);
 	ft_printf_flush_buffer();
+	ft_lstclear(&paths, free);
 	ft_lstclear(&conf.users, free_user_info);
 	ft_lstclear(&conf.groups, free_group_info);
 	return (0);

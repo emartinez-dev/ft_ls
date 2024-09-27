@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:31:17 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/14 14:00:16 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:28:57 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void error_invalid_arg(char arg);
 t_list    *parse_args(char *arg, t_config *conf)
 {
 	if (arg[0] != '-')
-		return ft_lstnew(arg);
+		return ft_lstnew(ft_strdup(arg));
 	int i = 0;
 	while (arg[++i])
 	{
