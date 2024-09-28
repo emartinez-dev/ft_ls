@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:38:12 by franmart          #+#    #+#             */
-/*   Updated: 2024/09/27 20:33:54 by franmart         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:12:06 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void	recurse_files(t_list *file_info, t_config *conf)
 	{
 		entry = file_info->content;
 		file = get_file_name(entry->path);
-		if (S_ISDIR(entry->stat_info.st_mode) && entry->stat_info.st_size != 0 &&
-		 	ft_strncmp(file, "..", 3) && ft_strncmp(file, ".", 2))
+		if (S_ISDIR(entry->stat_info.st_mode) && ft_strncmp(file, "..", 2)
+											&& ft_strncmp(file, ".", 2))
 			list_dir(conf, entry->path);
 		file_info = file_info->next;
 	}
